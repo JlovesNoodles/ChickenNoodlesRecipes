@@ -144,18 +144,26 @@ read nucleichoice
 	echo "Error on Choice"
 	fi
 
+
 elif [[ $vulnchoice == "C" || $vulnchoice == "c" ]]; then
 cmseek -u $url --random-agent >> $url/vulnscanner/$url.CmSeek.txt
 
-
 else
-echo "[+] You may comeback here if anytime"
+echo " "
 fi
+
+
+
+
+
 
 
 echo " " 
 echo " FINISHED " 
 echo " "
+
+
+
 
 #FUZZING
 echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
@@ -181,5 +189,8 @@ nmap -iL $url/subdomain/$url.subdomain.txt -T4 -sV -p- -A >> $url/nmapscan/$url.
 else 
 echo "Really Bruh?"
 fi
+
+
+
 
 figlet -c -w  100 " ALL DONE HAPPY HACKING "
