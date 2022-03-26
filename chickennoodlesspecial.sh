@@ -115,42 +115,78 @@ echo " "
 
 
 #For Wordpress
-echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
-echo "[+] { W - Wordpress | J - Joomla | D - Drupal | N - NUCLEI | C - CMS (IF YOUR NOT SURE ABOUT THE CMS BEING USED) | X - Cancel}"
-read vulnchoice
+#! /bin/bash
 
-if [[ $vulnchoice == "W" || $vulnchoice == "w" ]]; then
-wpscan --url $url --enumerate --stealthy >> $url/vulnscanner/$url.WPScan.txt
 
-elif [[ $vulnchoice == "J" || $fuvulnchoicezz == "j" ]]; then
-joomscan -u $url >> $url/vulnscanner/$url.JoomsScan.txt
+url=$1
 
-elif [[ $vulnchoice == "D" || $vulnchoice == "d" ]]; then
-droopescan scan drupal -u $url --random-agent >> $url/vulnscanner/$url.DrupScan.txt
+if [ ! -d "$url" ];then
+	mkdir $url
+fi	
 
-elif [[ $vulnchoice == "N" || $vulnchoice == "n" ]]; then
-echo "Do you wanna run nuclei on all subdomain or only the domairn or Both ? { B | D | S } "
-read nucleichoice
-	if [[ $nucleichoice == "B" || $nucleichoice == "b" ]]; then
-	/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt 
-	/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+
+if [ ! -d "$url/vulnscanner" ];then
+	mkdir $url/vulnscanner
+fi
 	
-	elif [[ $nucleichoice == "D" || $nucleichoice == "d" ]]; then
-	/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt
 	
-	elif [[ $nucleichoice == "S" || $nucleichoice == "s" ]]; then
-	/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+function vulnscanner () {
+	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
+	echo "[+] { W - Wordpress | J - Joomla | D - Drupal | N - NUCLEI | C - CMS (IF YOUR NOT SURE ABOUT THE CMS BEING USED) | X - Cancel}"
+	read vulnchoice
+
+	if [[ $vulnchoice == "W" || $vulnchoice == "w" ]]; then
+	wpscan --url $url --enumerate --stealthy >> $url/vulnscanner/$url.WPScan.txt
+	cat $url/vulnscanner/$url.WPScan.txt
+
+	elif [[ $vulnchoice == "J" || $vulnchoice == "j" ]]; then
+	joomscan -u $url >> $url/vulnscanner/$url.JoomsScan.txt
+	cat $url/vulnscanner/$url.JoomsScan.txt
+
+	elif [[ $vulnchoice == "D" || $vulnchoice == "d" ]]; then
+	droopescan scan drupal -u $url --random-agent >> $url/vulnscanner/$url.DrupScan.txt
+	cat $url/vulnscanner/$url.DrupScan.txt
+
+
+	elif [[ $vulnchoice == "N" || $vulnchoice == "n" ]]; then
+	echo "Do you wanna run nuclei on all subdomain or only the domairn or Both ? { B | D | S } "
+	read nucleichoice
+		if [[ $nucleichoice == "B" || $nucleichoice == "b" ]]; then
+		/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt 
+		/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+		
+	
+	
+		elif [[ $nucleichoice == "D" || $nucleichoice == "d" ]]; then
+		/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt
+		cat $url/vulnscanner/$url.NucleiDomain.txt
+	
+		elif [[ $nucleichoice == "S" || $nucleichoice == "s" ]]; then
+		/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+		cat $url/vulnscanner/$url.NucleiSubDomain.txt
+		else
+		echo "Error on Choice"
+		fi
+
+
+	elif [[ $vulnchoice == "C" || $vulnchoice == "c" ]]; then
+	cmseek -u $url --random-agent >> $url/vulnscanner/$url.CmSeek.txt
+	cat $url/vulnscanner/$url.CmSeek.txt
 	else
-	echo "Error on Choice"
+	echo " "
 	fi
 
+}
 
-elif [[ $vulnchoice == "C" || $vulnchoice == "c" ]]; then
-cmseek -u $url --random-agent >> $url/vulnscanner/$url.CmSeek.txt
+vulnscanner
 
-else
-echo " "
+echo "[ ++ Do you wanna scan again? ++ { Y | N } ]"
+read anotherchoice
+if [[ $anotherchoice == "Y" || $anotherchoice == "y" ]]; then
+vulnscanner
 fi
+
+
 
 
 
