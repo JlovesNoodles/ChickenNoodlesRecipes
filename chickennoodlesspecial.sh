@@ -113,22 +113,6 @@ echo " "
 
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
 
-
-#For Wordpress
-#! /bin/bash
-
-
-url=$1
-
-if [ ! -d "$url" ];then
-	mkdir $url
-fi	
-
-
-if [ ! -d "$url/vulnscanner" ];then
-	mkdir $url/vulnscanner
-fi
-	
 	
 function vulnscanner () {
 	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
