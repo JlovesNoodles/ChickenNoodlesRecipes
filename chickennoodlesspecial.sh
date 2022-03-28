@@ -1,5 +1,11 @@
 #! /bin/bash
 #! HomeBrewedByChickenN00dles
+#! Dont use with Malicious Intent you might get into trouble for real!
+
+
+
+
+
 
 url=$1
 
@@ -30,6 +36,12 @@ fi
 if [ ! -d "$url/vulnscanner" ];then
 	mkdir $url/vulnscanner
 fi
+
+if [ ! -d "$url/breachparsing" ];then
+	mkdir $url/breachparsing
+fi	
+
+
 
 
 function whoisrecords() {
@@ -97,11 +109,6 @@ echo " FINISHED "
 echo " "
 
 
-#/opt/httpx -list $url/subdomain/$url.subdomain.txt >> $url/subdomain/$url.RawAlive.txt
-#cat $url/subdomain/$url.RawAlive.txt | sed 's/https\?:\/\///' >> $url/subdomain/$url.parsed.txt
-#rm $url/subdomain/$url.RawAlive.txt
-
-
 
 #AQUATONE
 
@@ -132,10 +139,47 @@ echo " "
 echo " FINISHED " 
 echo " "
 
+
+function breachparsing() {
+
+	echo "[ Do you want to gather breached data? { Y | N }]"
+	read breach
+	if [[ $breach == "Y" || $breach == "y" ]]; then
+	
+	echo "[@$url is this the same email extension? { Y | N }]"
+	read breachchoice
+		if [[ $breachchoice == "Y" || $breachchoice == "y" ]]; then
+		cd $url/breachparsing 
+		/opt/breach-parse/breach-parse.sh $url $url.breachparse.txt
+		
+		#echo "$url" >> $url/syntax.txt
+		#cat syntax.txt | sed -e "s/\.com//" >> $url.parsesysntax
+		#mv $url* /$url/breachparsing/
+		
+		elif [[ $breachchoice == "N" || $breachchoice == "n" ]]; then
+		echo ["Type the email format"]
+		read emailformat
+		cd $url/breachparsing 
+		/opt/breach-parse/breach-parse.sh $emailformat $emailformat.breachparse.txt
+		#mv $choice* /$url/breachparsing
+		else
+		echo "Wrong Choice Exiting"
+		fi
+		
+	else 
+	echo " "
+	fi
+}
+
+breachparsing
+
+
+
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
 
+
 	
-#! /bin/bash
+	
 	
 function vulnscanner () {
 
