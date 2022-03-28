@@ -1,20 +1,5 @@
 #! /bin/bash
 #! HomeBrewedByChickenN00dles
-#! Dont use with Malicious Intent you might get into trouble for real!
-# Sure to install first the following
-# NOTE THAT WITH ONE SINGLE PROGRAM THE SCRIPT MIGHT NOT WORK.
-#whois
-# subfinder / assetfinder
-# httpx
-# gau
-# wpscan / joomscan / drupescan / nuclei / cmseek / 
-# ffuf
-# nmap
-
-
-
-
-
 
 url=$1
 
