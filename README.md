@@ -1,15 +1,8 @@
 # ChickenNoodlesRecipes
 
-
-# Sure to install first the following
-# NOTE THAT WITH ONE SINGLE PROGRAM THE SCRIPT MIGHT NOT WORK.
-# whois
-# subfinder / assetfinder
-# httpx
-# gau
-# wpscan / joomscan / droopscan / nuclei / cmseek / 
-# ffuf
-# nmap
+ Sure to install first the following
+NOTE THAT WITH ONE SINGLE PROGRAM THE SCRIPT MIGHT NOT WORK.
+whois | subfinder / assetfinder | httpx | gau | wpscan / joomscan / droopscan / nuclei / cmseek / | ffuf | nmap
 
 Steps to install the following
 
