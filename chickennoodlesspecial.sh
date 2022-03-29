@@ -2,11 +2,6 @@
 #! HomeBrewedByChickenN00dles
 #! Dont use with Malicious Intent you might get into trouble for real!
 
-
-
-
-
-
 url=$1
 
 if [ ! -d "$url" ];then
@@ -39,6 +34,10 @@ fi
 
 if [ ! -d "$url/breachparsing" ];then
 	mkdir $url/breachparsing
+fi	
+
+if [ ! -d "$url/subtakeover" ];then
+	mkdir $url/subtakeover
 fi	
 
 
@@ -102,12 +101,34 @@ function httpxresult() {
 	cat $url/subdomain/$url.subdomainchecked.txt | grep -e 200 >> $url/subdomain/$url.AliveSubdomain.txt
 	rm $url/subdomain/$url.subdomainchecked.txt
 }
+
 httpxresult
 
 echo " " 
 echo " FINISHED " 
 echo " "
 
+
+function subtakeover() { 
+
+	echo "[+] Checking for possible Domain Takeover Using Subjack"
+	subjack -w $url/subdomain/$url.subdomain.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/subtakeover/$url.subjacktakeover.txt
+	cat $url/subtakeover/$url.subjacktakeover.txt
+	echo " " 
+	echo "Finished"
+	echo " "
+	#altdns -i $url/subdomain/$url.subdomain.txt -o $url.data_output -w /opt/altdns/words.txt -r -s $url.altdnstakeover.txt
+	#mv $url.data_output $url.altdnstakeover.txt /$url/subtakeover	
+	echo "Check this website for the HOW TO takeover if there is any https://github.com/EdOverflow/can-i-take-over-xyz"
+	
+}
+
+subtakeover
+
+
+echo " " 
+echo " FINISHED " 
+echo " "
 
 
 #AQUATONE
@@ -175,12 +196,12 @@ breachparsing
 
 
 
+
+
+echo "------------------------ THIS PORTION IS COMPLETELY OPTIONAL, BUT I WOULD  ADVISE TO DO IT SEPERATELY :D ------------------------"
+	
+	
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
-
-
-	
-	
-	
 function vulnscanner () {
 
 	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
