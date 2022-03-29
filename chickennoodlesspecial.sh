@@ -224,8 +224,13 @@ echo " "
 
 
 
-echo "[------------------------ THIS PORTION IS COMPLETELY OPTIONAL, BUT I WOULD  ADVISE TO DO IT SEPERATELY :D ------------------------]"
-	
+echo " "
+echo " "
+echo "[---------------------------------------------------------------------------------------------------------------------------------------------]"
+echo "[ +++++++++++++++ THIS PORTION IS OPTIONAL YOU MAY CHOOSE NOT TO PROCEED, BUT WOULD STILL SUGGEST TO RUN MANUALLY SEPERATELY ++++++++++++++++ ]"
+echo "[---------------------------------------------------------------------------------------------------------------------------------------------]"
+echo " "
+echo " "
 	
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
 
@@ -337,7 +342,8 @@ function nmapscan(){
 	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
 	read input
 	if [[ $input == "Y" || $input == "y" ]]; then
-	nmap -iL $url/subdomain/$url.subdomain.txt -T4 -sV -p- -A >> $url/nmapscan/$url.ScannedDomains.txt
+	nmap $url -T4 -sV -p- -A >> $url/nmapscan/$url.ScanDomain.txt
+	nmap -iL $url/subdomain/$url.subdomain.txt -T4 -sV -p- -A >> $url/nmapscan/$url.ScannedSubDomains.txt
 	else 
 	echo "Really Bruh?"
 	fi
