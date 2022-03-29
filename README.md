@@ -1,6 +1,13 @@
 # ChickenNoodlesRecipes
-# you may comment all the other tools that you dont have/trouble installing or dont like to be included
+
+
+you may comment all the other tools that you dont have/trouble installing or dont like to be included
+
+
+
+
  Sure to install first the following
+ 
 NOTE THAT WITH ONE SINGLE PROGRAM THE SCRIPT MIGHT NOT WORK.
 whois | subfinder / assetfinder | httpx | gau | wpscan / joomscan / droopscan / nuclei / cmseek / | ffuf | nmap
 
