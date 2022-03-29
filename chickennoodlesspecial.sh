@@ -1,6 +1,5 @@
 #! /bin/bash
 #! HomeBrewedByChickenN00dles
-#! Dont use with Malicious Intent you might get into trouble for real!
 
 url=$1
 
@@ -54,11 +53,13 @@ function whoisrecords() {
 }
 whoisrecords
 
-
-
-echo " " 
-echo " FINISHED " 
-echo " " 
+echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
 
 #THIS WILL HARVEST SUBDOMAINS AND SAVE IT ON ITS RESPECTIVE FOLDER
 
@@ -87,9 +88,14 @@ function subdomain () {
 }
 subdomain
 
-echo " " 
-echo " FINISHED " 
 echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
+
 
 
 
@@ -104,9 +110,14 @@ function httpxresult() {
 
 httpxresult
 
-echo " " 
-echo " FINISHED " 
 echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
+
 
 
 function subtakeover() { 
@@ -126,8 +137,12 @@ function subtakeover() {
 subtakeover
 
 
-echo " " 
-echo " FINISHED " 
+echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
 echo " "
 
 
@@ -156,8 +171,12 @@ function gauresult(){
 gauresult
 
 
-echo " " 
-echo " FINISHED " 
+echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
 echo " "
 
 
@@ -195,13 +214,21 @@ function breachparsing() {
 breachparsing
 
 
+echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
 
 
 
-echo "------------------------ THIS PORTION IS COMPLETELY OPTIONAL, BUT I WOULD  ADVISE TO DO IT SEPERATELY :D ------------------------"
+echo "[------------------------ THIS PORTION IS COMPLETELY OPTIONAL, BUT I WOULD  ADVISE TO DO IT SEPERATELY :D ------------------------]"
 	
 	
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
+
 function vulnscanner () {
 
 	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
@@ -209,7 +236,7 @@ function vulnscanner () {
 	read vulnchoice
 
 	if [[ $vulnchoice == "W" || $vulnchoice == "w" ]]; then
-	wpscan --url $url --enumerate --stealthy >> $url/vulnscanner/$url.WPScan.txt
+	wpscan --url $url --enumerate --stealthy --ignore-main-redirect>> $url/vulnscanner/$url.WPScan.txt
 	cat $url/vulnscanner/$url.WPScan.txt
 
 	elif [[ $vulnchoice == "J" || $vulnchoice == "j" ]]; then
@@ -217,7 +244,7 @@ function vulnscanner () {
 	cat $url/vulnscanner/$url.JoomsScan.txt
 
 	elif [[ $vulnchoice == "D" || $vulnchoice == "d" ]]; then
-	droopescan scan drupal -u $url --random-agent >> $url/vulnscanner/$url.DrupScan.txt
+	droopescan scan drupal -u $url >> $url/vulnscanner/$url.DrupScan.txt
 	cat $url/vulnscanner/$url.DrupScan.txt
 
 
@@ -248,8 +275,13 @@ function vulnscanner () {
 	else
 	echo " "
 	fi
-
+	echo " "
+	echo " "
+	echo "[-------------------------------------------]"
 	echo "[ ++ Do you wanna scan again? ++ { Y | N } ]"
+	echo "[-------------------------------------------]"
+	echo " "
+	echo " "
 	read anotherchoice
 	if [[ $anotherchoice == "Y" || $anotherchoice == "y" ]]; then
 	vulnscanner
@@ -263,11 +295,14 @@ vulnscanner
 
 
 
-echo " " 
-echo " FINISHED " 
+
 echo " "
-
-
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
 
 
 
@@ -278,7 +313,7 @@ function fuzzresult() {
 	echo "[+] Do you want to perform url fuzzing { Y | N } ? "
 	read fuzz
 	if [[ $fuzz == "Y" || $fuzz == "y" ]]; then
-	echo "[TAKE YOUR COFFEE GO OUTSIDE LOOK FOR THE POLICE THEY MIGHT BE SEARCHING FOR YOU NOW LOL]"
+	echo "[This might take a while]"
 	ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt:FUZZ -u https://$url:FUZZ >> $url/fuzz/$url.FFUFResults.txt
 	else
 	echo "aight understandable have a good day!"
@@ -286,13 +321,19 @@ function fuzzresult() {
 }
 fuzzresult
 
-echo " " 
-echo " FINISHED " 
 echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
+
 
 function nmapscan(){
 
 	echo "[+] Would you like to proceed on NMAP Scan? [ y | n ] "
+	echo " "
 	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
 	read input
 	if [[ $input == "Y" || $input == "y" ]]; then
