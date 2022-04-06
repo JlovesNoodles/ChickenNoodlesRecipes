@@ -3,7 +3,6 @@
 
 
 git clone https://github.com/JlovesNoodles/ChickenNoodlesRecipes.git
-cd CHICKENNOODLES
 cd ChickenNoodlesRecipes
 chmod +x chickennoodlesspecial.sh
 ./chickennoodlesspecial.sh
