@@ -1,6 +1,17 @@
 # ChickenNoodlesRecipes
 
 
+
+git clone https://github.com/JlovesNoodles/ChickenNoodlesRecipes.git
+cd CHICKENNOODLES
+cd ChickenNoodlesRecipes
+chmod +x chickennoodlesspecial.sh
+./chickennoodlesspecial.sh
+
+
+
+
+
 you may comment all the other tools that you dont have/trouble installing or dont like to be included
 
 
