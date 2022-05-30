@@ -67,19 +67,41 @@ echo " "
 
 function subdomain () {
 
-	echo "[+] For the Subdomain Choose between Subfinder / Assetfinder { S | A }"
-	read choice
-	if [[ $choice == "S" || $choice == "s" ]]; then
-	echo "[+] Harvesting Sudomains with Subfinder..."
-	subfinder -d $url >> $url/subdomain/$url.subdomainraw.txt 
-	cat $url/subdomain/$url.subdomainraw.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> $url/subdomain/$url.subdomain.txt
-	rm $url/subdomain/$url.subdomainraw.txt
+	#echo "[+] Gathering Info with Asset Finder "
+	#read choice
+#	if [[ $choice == "S" || $choice == "s" ]]; then
+	#echo "[+] Harvesting Sudomains with Subfinder..."
+#	subfinder -d $url >> $url/subdomain/$url.subdomainraw.txt 
+#	cat $url/subdomain/$url.subdomainraw.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> $url/subdomain/$url.subdomain.txt
+#	rm $url/subdomain/$url.subdomainraw.txt
 
-	elif [[ $choice == "A" || $choice == "a" ]]; then
+#	elif [[ $choice == "A" || $choice == "a" ]]; then
+
+
+
+
+
 	echo "[+] Harvesting Sudomains with Assetfinder..."
 	assetfinder  $url >> $url/subdomain/$url.subdomainraw.txt
 	cat $url/subdomain/$url.subdomainraw.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> $url/subdomain/$url.subdomain.txt
 	rm $url/subdomain/$url.subdomainraw.txt
+	
+	echo " "
+	echo " "
+	echo "[-------------------------------------------]"
+	echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+	echo "[-------------------------------------------]"
+	echo " "
+	echo " "
+	
+	echo "[+] Do you wanna double check it with Knockpy? {Y} | {N} [+]" 
+	read knock
+	if [[ $knock == "Y" || $knock == "y" ]]; then
+	
+	echo "[+] Saving file using Knockpy for Double Checking "
+
+	knockpy $url >> $url/subdomain/$url.subdomainKNOCKPY.txt
+	cat $url/subdomain/$url.subdomainKNOCKPY.txt
 	else 
 	echo "Bruh can you even read?"
 	rm -r $url
@@ -87,6 +109,17 @@ function subdomain () {
 	fi
 }
 subdomain
+
+
+
+
+
+
+
+
+
+
+
 
 echo " "
 echo " "
@@ -159,12 +192,19 @@ echo " "
 
 
 #GetAllUrls
-#Edit this part for your reference this only filter all url with .php extension
+
 
 function gauresult(){
-
-	echo "[+] Getting URL's using GAU (.php extentions only)"
-	gau --fc 404,302 $url | grep ".php" >> $url/gau/$url.PHPEXTENSIONSURL.txt
+	#.asa .inc .sql .zip .tar .pdf .txt
+	echo "[+] Getting URL's using GAU (.php .asa .inc .sql .zip .tar .pdf .txt Extenstions Only)"
+	gau --fc 404,302 $url | grep ".php" >> $url/gau/$url.PHP_extentionurl.txt
+	gau --fc 404,302 $url | grep ".asa" >> $url/gau/$url.ASA_extentionurl.txt
+	gau --fc 404,302 $url | grep ".inc" >> $url/gau/$url.INC_extentionurl.txt
+	gau --fc 404,302 $url | grep ".sql" >> $url/gau/$url.SQL_extentionurl.txt
+	gau --fc 404,302 $url | grep ".zip" >> $url/gau/$url.ZIP_extentionurl.txt
+	gau --fc 404,302 $url | grep ".tar" >> $url/gau/$url.TAR_extentionurl.txt
+	gau --fc 404,302 $url | grep ".pdf" >> $url/gau/$url.PDF_extentionurl.txt
+	gau --fc 404,302 $url | grep ".txt" >> $url/gau/$url.TXT_extentionurl.txt
 	#gau --fc 404,302 $url >> $url/gau/$url.GAU_url.txt
 }
 
