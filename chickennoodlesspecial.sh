@@ -60,7 +60,7 @@ whoisrecords
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -93,7 +93,7 @@ function subdomain () {
 	echo " "
 	echo " "
 	echo "[-------------------------------------------]"
-	echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+	echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 	echo "[-------------------------------------------]"
 	echo " "
 	echo " "
@@ -108,7 +108,7 @@ function subdomain () {
 	cat $url/subdomain/$url.subdomainKNOCKPY.txt
 	
 	elif [[ $knock == "N" || $knock == "n" ]]; then
-	echo "Aight Have A Good Day"
+	echo "Aight Understandable Have A Good Day"
 	
 	else 
 	echo "Bruh can you even read?"
@@ -123,7 +123,7 @@ subdomain
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -145,7 +145,7 @@ httpxresult
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -174,7 +174,7 @@ subtakeover
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -192,7 +192,7 @@ echo " "
 	cd ..
 	cd ..
 	else
-	echo "Aight up to you cuhz"
+	echo "Aight Understandable Have A Good Day"
 	fi
 }
 aquatoneresult
@@ -201,7 +201,7 @@ aquatoneresult
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -229,7 +229,7 @@ gauresult
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -272,7 +272,7 @@ breachparsing
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -282,7 +282,7 @@ echo " "
 echo " "
 echo " "
 echo "[---------------------------------------------------------------------------------------------------------------------------------------------]"
-echo "[ +++++++++++++++ THIS PORTION IS OPTIONAL YOU MAY CHOOSE NOT TO PROCEED, BUT WOULD STILL SUGGEST TO RUN MANUALLY SEPERATELY ++++++++++++++++ ]"
+echo "[ +++++++++++++++ THIS PORTION IS OPTIONAL YOU MAY CHOOSE NOT TO PROCEED, BUT WOULD STILL SUGGEST TO RUN MANUALLY SEPERATELY ++++++++++++++++ ]" | lolcat
 echo "[---------------------------------------------------------------------------------------------------------------------------------------------]"
 echo " "
 echo " "
@@ -338,7 +338,7 @@ function vulnscanner () {
 	echo " "
 	echo " "
 	echo "[-------------------------------------------]"
-	echo "[ ++ Do you wanna scan again? ++ { Y | N } ]"
+	echo "[ ++ Do you wanna scan again? ++ { Y | N } ]" | lolcat
 	echo "[-------------------------------------------]"
 	echo " "
 	echo " "
@@ -359,7 +359,7 @@ vulnscanner
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -376,7 +376,7 @@ function fuzzresult() {
 	echo "[This might take a while]"
 	ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt:FUZZ -u https://$url:FUZZ >> $url/fuzz/$url.FFUFResults.txt
 	else
-	echo "aight understandable have a good day!"
+	echo "Aight Understandable Have A Good Day"
 	fi
 }
 fuzzresult
@@ -384,7 +384,7 @@ fuzzresult
 echo " "
 echo " "
 echo "[-------------------------------------------]"
-echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]" | lolcat
 echo "[-------------------------------------------]"
 echo " "
 echo " "
@@ -392,7 +392,7 @@ echo " "
 
 function nmapscan(){
 
-	echo "[+] Would you like to proceed on NMAP Scan? [ y | n ] "
+	echo "[+] Would you like to proceed on NMAP Scan? [ Y | N ] "
 	echo " "
 	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
 	read input
@@ -406,7 +406,7 @@ function nmapscan(){
 }
 nmapscan
 
-
+	
 
 
 
