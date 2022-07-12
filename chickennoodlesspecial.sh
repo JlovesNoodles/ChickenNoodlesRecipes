@@ -27,6 +27,10 @@ if [ ! -d "$url/fuzz" ];then
 	mkdir $url/fuzz
 fi
 
+if [ ! -d "$url/aquatone" ];then
+	mkdir $url/aquatone
+fi
+
 if [ ! -d "$url/vulnscanner" ];then
 	mkdir $url/vulnscanner
 fi
@@ -40,7 +44,7 @@ if [ ! -d "$url/subtakeover" ];then
 fi	
 
 
-
+cowsay -f daemon "Chickenoodlesspecial Coming Right Up :D" | lolcat
 
 function whoisrecords() {
 
@@ -102,6 +106,10 @@ function subdomain () {
 
 	knockpy $url >> $url/subdomain/$url.subdomainKNOCKPY.txt
 	cat $url/subdomain/$url.subdomainKNOCKPY.txt
+	
+	elif [[ $knock == "N" || $knock == "n" ]]; then
+	echo "Aight Have A Good Day"
+	
 	else 
 	echo "Bruh can you even read?"
 	rm -r $url
@@ -109,15 +117,6 @@ function subdomain () {
 	fi
 }
 subdomain
-
-
-
-
-
-
-
-
-
 
 
 
@@ -153,6 +152,8 @@ echo " "
 
 
 
+
+
 function subtakeover() { 
 
 	echo "[+] Checking for possible Domain Takeover Using Subjack"
@@ -180,16 +181,30 @@ echo " "
 
 
 #AQUATONE
+	function aquatoneresult(){
+	echo "[+] Do You want a Visual Identification using Aquatone { Y | N } ?"
+	read aquainput
+	if [[ $aquainput == "Y" || $aquainput == "y" ]]; then
+	echo "[+] Visual Identification Using Aquatone"
+	cd $url/subdomain
+	cat $url.AliveSubdomain.txt | aquatone
+	mv aquatone_* /home/kali/Documents/bugbounty/$url/aquatone/
+	cd ..
+	cd ..
+	else
+	echo "Aight up to you cuhz"
+	fi
+}
+aquatoneresult
 
-#if [[ $input == "Y" || $input == "y" ]]; then
-#echo "Do You want a Visual Identification using Aquatone?"
-#read aquainput
-#echo "[+] Visual Identification Using Aquatone"
-#cat /home/kali/Documents/bugbounty/dumps/$url.AliveSubdomain.txt | aquatone >> $url.AquatoneSubdomains.txt
-#else
-#echo "Aight up to you cuhz"
-#fi
 
+echo " "
+echo " "
+echo "[-------------------------------------------]"
+echo "[ +++++++++++++++ FINISHED ++++++++++++++++ ]"
+echo "[-------------------------------------------]"
+echo " "
+echo " "
 
 #GetAllUrls
 
@@ -391,4 +406,15 @@ function nmapscan(){
 }
 nmapscan
 
-figlet -c -w  100 " ALL DONE HAPPY HACKING "
+
+
+
+
+
+
+cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat
+#figlet -c -w  100 " ALL DONE HAPPY HACKING "
+
+
+
+cowsay -f vader "May the BUG be with you" | lolcat
