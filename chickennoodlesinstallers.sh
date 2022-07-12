@@ -2,12 +2,12 @@
 #! HomeBrewedByChickenN00dles
 
 
-cowsay -f dragon "Welcome to ChickenNoodles Installer" 
+cowsay -f dragon "Welcome to ChickenNoodles Installer" | lolcat -a -d 7
 
 echo " "
 echo " "
 echo "[----------------------------------------------------------------------------------]"
-echo "[ ++++++++++ Do you wish to install the applications needed? { Y , N } +++++++++++ ]"
+echo "[ ++++++++++ Do you wish to install the applications needed? { Y , N } +++++++++++ ]" | lolcat
 echo "[----------------------------------------------------------------------------------]"
 echo " "
 echo " "
@@ -18,7 +18,7 @@ echo " "
 
 read choice
 if [[ $choice == "Y" || $choice == "y" ]]; then
-echo "Will install the necessary Applications, Just note that breach parsing DB will not be included Comment it first or download seperate here https://github.com/hmaverickadams/breach-parse.git" | boxes -d diamonds -a c 
+echo "Will install the necessary Applications, Just note that breach parsing DB will not be included Comment it first or download seperate here https://github.com/hmaverickadams/breach-parse.git" |boxes -a c -d cat | lolcat -a -d 7
 
 apt install whois
 echo "Finished with Whois"
@@ -67,11 +67,10 @@ echo "Finished with Nuclei, was installed on /opt/"
 cowsay "FINISHED WITH EVERYTHING HAPPY HACKING <3"
 
 elif [[ $choice == "N" || $choice == "n" ]]; then
-cowsay -f dragon "Why did you even downloaded this bruh?"
+cowsay -f turkey "Why did you even downloaded this bruh?" | lolcat
 exit
 
 else
-cowsay -f dragon "Really Bruh?"
+cowsay -f turtle "Really Bruh?" | lolcat
 exit
 fi
-
