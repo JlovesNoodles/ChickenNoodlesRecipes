@@ -7,7 +7,8 @@ cd ChickenNoodlesRecipes
 chmod +x chickennoodlesinstallers.sh
 ./chickennoodlesinstallers.sh
 
-chmod +x chickennoodlesspecial.sh
-./chickennoodlesspecial.sh
+chmod +x chickennoodlespecial.sh
+./chickennoodlespecial.sh <target.com>
+
 
 
