@@ -44,7 +44,7 @@ if [ ! -d "$url/subtakeover" ];then
 fi	
 
 
-cowsay -f daemon "Chickenoodlesspecial Coming Right Up :D" | lolcat
+cowsay -f daemon "Chickenoodlesspecial Coming Right Up :D" | lolcat -a -d 500
 
 function whoisrecords() {
 
@@ -411,10 +411,9 @@ nmapscan
 
 
 
-
-cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat
+cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat -a -d 500
 #figlet -c -w  100 " ALL DONE HAPPY HACKING "
 
 
 
-cowsay -f vader "May the BUG be with you" | lolcat
+cowsay -f vader "May the BUG be with you" | lolcat -a -d 500
