@@ -48,7 +48,7 @@ cowsay -f daemon "Chickenoodlesspecial Coming Right Up :D" | lolcat -a -d 1
 
 function whoisrecords() {
 
-	echo "[+] Gathering WhoIS Records | DNS MX Records |  DNS A Records | DNS TXT Records"
+	echo "[+] Gathering WhoIS Records | DNS MX Records |  DNS A Records | DNS TXT Records" | lolcat
 	whois $url >> $url/initial/$url.whois.txt
 	dig $url MX >> $url/initial/$url.DnsMx.txt
 	dig $url A >> $url/initial/$url.DnsA.txt
@@ -85,7 +85,7 @@ function subdomain () {
 
 
 
-	echo "[+] Harvesting Sudomains with Assetfinder..."
+	echo "[+] Harvesting Sudomains with Assetfinder..." | lolcat
 	assetfinder  $url >> $url/subdomain/$url.subdomainraw.txt
 	cat $url/subdomain/$url.subdomainraw.txt | sort -u | httprobe -s -p https:443 | sed 's/https\?:\/\///' | tr -d ':443' >> $url/subdomain/$url.subdomain.txt
 	rm $url/subdomain/$url.subdomainraw.txt
@@ -98,20 +98,20 @@ function subdomain () {
 	echo " "
 	echo " "
 	
-	echo "[+] Do you wanna double check it with Knockpy? {Y} | {N} [+]" 
+	echo "[+] Do you wanna double check it with Knockpy? {Y} | {N} [+]"  | lolcat
 	read knock
 	if [[ $knock == "Y" || $knock == "y" ]]; then
 	
-	echo "[+] Saving file using Knockpy for Double Checking "
+	echo "[+] Saving file using Knockpy for Double Checking " | lolcat
 
 	knockpy $url >> $url/subdomain/$url.subdomainKNOCKPY.txt
 	cat $url/subdomain/$url.subdomainKNOCKPY.txt
 	
 	elif [[ $knock == "N" || $knock == "n" ]]; then
-	echo "Aight Understandable Have A Good Day"
+	echo "Aight Understandable Have A Good Day" | lolcat
 	
 	else 
-	echo "Bruh can you even read?"
+	echo "Bruh can you even read?" | lolcat
 	rm -r $url
 	exit
 	fi
@@ -134,7 +134,7 @@ echo " "
 #edit this part if you want. This filter status 200 only
 function httpxresult() {
 
-	echo "[+] Content Discovery using HTTPX"
+	echo "[+] Content Discovery using HTTPX" | lolcat
 	/opt/httpx -list $url/subdomain/$url.subdomain.txt -title -tech-detect -status-code >> $url/subdomain/$url.subdomainchecked.txt
 	cat $url/subdomain/$url.subdomainchecked.txt | grep -e 200 >> $url/subdomain/$url.AliveSubdomain.txt
 	rm $url/subdomain/$url.subdomainchecked.txt
@@ -156,15 +156,15 @@ echo " "
 
 function subtakeover() { 
 
-	echo "[+] Checking for possible Domain Takeover Using Subjack"
+	echo "[+] Checking for possible Domain Takeover Using Subjack" | lolcat
 	subjack -w $url/subdomain/$url.subdomain.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/subtakeover/$url.subjacktakeover.txt
 	cat $url/subtakeover/$url.subjacktakeover.txt
 	echo " " 
-	echo "Finished"
+	echo "Finished" | lolcat
 	echo " "
 	#altdns -i $url/subdomain/$url.subdomain.txt -o $url.data_output -w /opt/altdns/words.txt -r -s $url.altdnstakeover.txt
 	#mv $url.data_output $url.altdnstakeover.txt /$url/subtakeover	
-	echo "Check this website for the HOW TO takeover if there is any https://github.com/EdOverflow/can-i-take-over-xyz"
+	echo "Check this website for the HOW TO takeover if there is any https://github.com/EdOverflow/can-i-take-over-xyz" | lolcat
 	
 }
 
@@ -182,7 +182,7 @@ echo " "
 
 #AQUATONE
 	function aquatoneresult(){
-	echo "[+] Do You want a Visual Identification using Aquatone { Y | N } ?"
+	echo "[+] Do You want a Visual Identification using Aquatone { Y | N } ?" | lolcat
 	read aquainput
 	if [[ $aquainput == "Y" || $aquainput == "y" ]]; then
 	echo "[+] Visual Identification Using Aquatone"
@@ -192,7 +192,7 @@ echo " "
 	cd ..
 	cd ..
 	else
-	echo "Aight Understandable Have A Good Day"
+	echo "Aight Understandable Have A Good Day" | lolcat
 	fi
 }
 aquatoneresult
@@ -220,7 +220,9 @@ function gauresult(){
 	gau --fc 404,302 $url | grep ".tar" >> $url/gau/$url.TAR_extentionurl.txt
 	gau --fc 404,302 $url | grep ".pdf" >> $url/gau/$url.PDF_extentionurl.txt
 	gau --fc 404,302 $url | grep ".txt" >> $url/gau/$url.TXT_extentionurl.txt
-	#gau --fc 404,302 $url >> $url/gau/$url.GAU_url.txt
+	gau --fc 404,302 $url | grep ".png, .jpeg, .gif, .raw" >> $url/gau/$url.PHOTOS_extentionurl.txt
+	
+	gau --fc 404,302 $url >> $url/gau/$url.GAU_url.txt
 }
 
 gauresult
@@ -237,11 +239,11 @@ echo " "
 
 function breachparsing() {
 
-	echo "[ Do you want to gather breached data? { Y | N }]"
+	echo "[ Do you want to gather breached data? { Y | N }]" | lolcat
 	read breach
 	if [[ $breach == "Y" || $breach == "y" ]]; then
 	
-	echo "[@$url is this the same email extension? { Y | N }]"
+	echo "[@$url is this the same email extension? { Y | N }]" | lolcat 
 	read breachchoice
 		if [[ $breachchoice == "Y" || $breachchoice == "y" ]]; then
 		cd $url/breachparsing 
@@ -258,7 +260,7 @@ function breachparsing() {
 		/opt/breach-parse/breach-parse.sh $emailformat $emailformat.breachparse.txt
 		#mv $choice* /$url/breachparsing
 		else
-		echo "Wrong Choice Exiting"
+		echo "Wrong Choice Exiting" | lolcat
 		fi
 		
 	else 
@@ -291,8 +293,8 @@ echo " "
 
 function vulnscanner () {
 
-	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS"
-	echo "[+] { W - Wordpress | J - Joomla | D - Drupal | N - NUCLEI | C - CMS (IF YOUR NOT SURE ABOUT THE CMS BEING USED) | X - Cancel}"
+	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS" | lolcat
+	echo "[+] { W - Wordpress | J - Joomla | D - Drupal | N - NUCLEI | C - CMS (IF YOUR NOT SURE ABOUT THE CMS BEING USED) | X - Cancel}" | lolcat
 	read vulnchoice
 
 	if [[ $vulnchoice == "W" || $vulnchoice == "w" ]]; then
@@ -309,23 +311,23 @@ function vulnscanner () {
 
 
 	elif [[ $vulnchoice == "N" || $vulnchoice == "n" ]]; then
-	echo "Do you wanna run nuclei on all subdomain or only the domairn or Both ? { B | D | S } "
+	echo "Do you wanna run nuclei on all subdomain or only the domairn or Both ? { B | D | S } " | lolcat
 	read nucleichoice
 		if [[ $nucleichoice == "B" || $nucleichoice == "b" ]]; then
-		/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt 
-		/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+		nuclei -u $url -t /root/nuclei-templates/ >> $url/vulnscanner/$url.NucleiDomain.txt 
+		nuclei -list $url/subdomain/$url.subdomain.txt -t /root/nuclei-templates/ >> $url/vulnscanner/$url.NucleiSubDomain.txt
 		
 	
 	
 		elif [[ $nucleichoice == "D" || $nucleichoice == "d" ]]; then
-		/opt/nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt
+		nuclei -u $url >> $url/vulnscanner/$url.NucleiDomain.txt
 		cat $url/vulnscanner/$url.NucleiDomain.txt
 	
 		elif [[ $nucleichoice == "S" || $nucleichoice == "s" ]]; then
-		/opt/nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
+		nuclei -list $url/subdomain/$url.subdomain.txt >> $url/vulnscanner/$url.NucleiSubDomain.txt
 		cat $url/vulnscanner/$url.NucleiSubDomain.txt
 		else
-		echo "Error on Choice"
+		echo "Error on Choice" | lolcat
 		fi
 
 
@@ -369,14 +371,14 @@ echo " "
 #FUZZING
 function fuzzresult() {
 
-	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
-	echo "[+] Do you want to perform url fuzzing { Y | N } ? "
+	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE " | lolcat
+	echo "[+] Do you want to perform url fuzzing { Y | N } ? " | lolcat
 	read fuzz
 	if [[ $fuzz == "Y" || $fuzz == "y" ]]; then
-	echo "[This might take a while]"
+	echo "[This might take a while]" | lolcat 
 	ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt:FUZZ -u https://$url:FUZZ >> $url/fuzz/$url.FFUFResults.txt
 	else
-	echo "Aight Understandable Have A Good Day"
+	echo "Aight Understandable Have A Good Day"  | lolcat
 	fi
 }
 fuzzresult
@@ -392,28 +394,20 @@ echo " "
 
 function nmapscan(){
 
-	echo "[+] Would you like to proceed on NMAP Scan? [ Y | N ] "
+	echo "[+] Would you like to proceed on NMAP Scan? [ Y | N ] " | lolcat
 	echo " "
-	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE "
+	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE " | lolcat
 	read input
 	if [[ $input == "Y" || $input == "y" ]]; then
 	nmap $url -T4 -sV -p- -A >> $url/nmapscan/$url.ScanDomain.txt
 	nmap -iL $url/subdomain/$url.subdomain.txt -T4 -sV -p- -A >> $url/nmapscan/$url.ScannedSubDomains.txt
+	
+	elif [[ $input == "N" || $input == "n" ]]; then
+	echo "Aight Understandable Have A Good Day" | lolcat
+	
 	else 
 	echo "Really Bruh?"
 	fi
 
 }
 nmapscan
-
-	
-
-
-
-
-cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat 
-#figlet -c -w  100 " ALL DONE HAPPY HACKING "
-
-
-
-cowsay -f vader "May the BUG be with you" | lolcat 
