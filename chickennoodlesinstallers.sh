@@ -2,7 +2,7 @@
 #! HomeBrewedByChickenN00dles
 
 
-cowsay -f dragon "Welcome to ChickenNoodles Installer" | lolcat -a -d 7
+cowsay -f dragon "Welcome to ChickenNoodles Installer" | lolcat -a -d 1
 
 echo " "
 echo " "
@@ -64,7 +64,9 @@ unzip nuclei_2.7.3_linux_amd64.zip
 mv nuclei /opt/
 echo "Finished with Nuclei, was installed on /opt/"
 
-cowsay "FINISHED WITH EVERYTHING HAPPY HACKING <3"
+cowsay "FINISHED WITH EVERYTHING HAPPY HACKING <3" | lolcat
+cowsay -f stegosaurus "Never forget to update everything after installing for best results!" | lolcat
+
 
 elif [[ $choice == "N" || $choice == "n" ]]; then
 cowsay -f turkey "Why did you even downloaded this bruh?" | lolcat
