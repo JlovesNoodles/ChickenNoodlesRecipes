@@ -1,39 +1,3 @@
-#! /bin/bash
-#! HomeBrewedByChickenN00dles
-
-url=$1
-
-if [ ! -d "$url" ];then
-	mkdir $url
-fi
-
-if [ ! -d "$url/initial" ];then
-	mkdir $url/initial
-fi
-
-if [ ! -d "$url/subdomain" ];then
-	mkdir $url/subdomain
-fi
-
-if [ ! -d "$url/nmapscan" ];then
-	mkdir $url/nmapscan
-fi
-
-if [ ! -d "$url/gau" ];then
-	mkdir $url/gau
-fi
-
-if [ ! -d "$url/fuzz" ];then
-	mkdir $url/fuzz
-fi
-
-if [ ! -d "$url/aquatone" ];then
-	mkdir $url/aquatone
-fi
-
-if [ ! -d "$url/vulnscanner" ];then
-	mkdir $url/vulnscanner
-fi
 
 if [ ! -d "$url/breachparsing" ];then
 	mkdir $url/breachparsing
@@ -43,11 +7,141 @@ if [ ! -d "$url/subtakeover" ];then
 	mkdir $url/subtakeover
 fi	
 
+if [ ! -d "$url/cloudscan" ];then
+	mkdir $url/cloudscan
+fi	
 
-cowsay -f daemon "Chickenoodlesspecial Coming Right Up :D" | lolcat -a -d 1
+
+cowsay  "Chickenoodlesspecial Coming Right Up :D" | lolcat -a -d 1
+
+
+
+#add here to check if its in the cloud, if no proceed, if yes bruteit via cloudbrute
+
+
+# cloudbrute -d globe.com.ph -c /etc/cloudbrute/config/modules/amazon.yaml -w /usr/share/cloudbrute/data/storage_small.txt
+function scanningcloud(){
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo "[----------------------------------------------------------------------------------------------------------]"
+	echo "[ +++++++++++++++ I assume you already done your recon is the target on cloud? [Y]es [N]o ++++++++++++++++ ]" | lolcat
+	echo "[----------------------------------------------------------------------------------------------------------]"
+	echo " "
+	echo " "
+	#cowsay -f flaming-sheep "I assume you already done your recon is the target on cloud? [Y]es [N]o" | lolcat
+	read scancloudchoice
+	if [[ $scancloudchoice == "Y" || $scancloudchoice == "y" ]]; then
+	echo "Select what Cloud Service the Target have [A]zure [W]aws [G]oogle_Cloud [N]ot Sure! " | lolcat
+	read cloud_choice
+	
+	
+		if [[ $cloud_choice == "A" || $cloud_choice ==  "a" ]]; then
+		echo "Enumeration on Process Please Wait" | lolcat
+		cloud_enum -k $url --disable-aws --disable-gc >> $url/cloudscan/cloud_result_for_$url.txt
+		cat $url/cloudscan/cloud_result_for_$url.txt
+		
+		
+		elif [[ $cloud_choice == "W" || $cloud_choice == "w" ]]; then
+		echo "Enumeration on Process Please Wait" | lolcat
+		cloud_enum -k $url --disable-azure --disable-gc >> $url/cloudscan/cloud_result_for_$url.txt
+		cat $url/cloudscan/cloud_result_for_$url.txt
+		
+		
+		elif [[ $cloud_choice  == "G" || $cloud_choice == "g" ]]; then
+		echo "Enumeration on Process Please Wait" | lolcat
+		cloud_enum -k $url --disable-aws --disable-azure >> $url/cloudscan/cloud_result_for_$url.txt
+		cat $url/cloudscan/cloud_result_for_$url.txt
+		
+		
+		elif [[ $cloud_choice == "N" || $cloud_choice == "n" ]]; then
+		echo "Enumeration on Process Please Wait" | lolcat
+		cloud_enum -k $url >> $url/cloudscan/cloud_result_for_$url.txt
+		cat $url/cloudscan/cloud_result_for_$url.txt
+		else
+		echo "Wrong choice bruh exiting now" | lolcat	
+		exit
+		fi
+		
+		
+		
+	#cloud_enum -k $url
+
+
+	elif [[ $scancloudchoice == "N" || $scancloudchoice == "n" ]]; then
+	echo " "
+	echo " "
+	echo "[-------------------------------------------------------------------------]"
+	echo "[ +++++++++++++++ Proceeding with the rest of the script ++++++++++++++++ ]" | lolcat
+	echo "[-------------------------------------------------------------------------]"
+	echo " "
+	echo " "
+	
+	#cowsay "Proceeding with the rest of the script" | lolcat
+	cd $url
+	rm -r cloudscan
+	cd ..
+	else
+	
+	echo " "
+	echo " "
+	echo "[-------------------------------------------------------]"
+	echo "[ +++++++++++++++ Wrong Choice Brother ++++++++++++++++ ]" | lolcat
+	echo "[-------------------------------------------------------]"
+	echo " "
+	echo " "
+	#cowsay -f ren "Wrong Choice Brother " | lolcat
+	exit
+	fi
+	
+
+
+}
+scanningcloud
+
+
+
+
+#add here to check for waf
+function checkingforwaf(){
+	echo " "
+	echo " "
+	echo " "
+	echo "Do you wanna scan for WAF? [Y]es [N]o" | lolcat
+	read wafscan
+	if [[ $wafscan == "Y" || $wafscan == "y" ]]; then
+	echo "Checking if there is a WAF" | lolcat
+	wafw00f $url
+	elif [[ $wafscan == "N" || $wafscan == "n" ]]; then
+	echo ""
+	
+	else
+	exit
+	fi
+	
+	#echo "Do you want to proceed ? [Y]es [N]o" | lolcat
+	#read wafinput
+	#if [[ $wafinput == "Y" || $wafinput == "y" ]]; then
+	#cowsay -f eyes "Proceeding with the rest of the script" | lolcat
+	#elif [[ $wafinput == "N" || $wafinput == "n" ]]; then
+	#echo "" 
+	#cowsay -f ren "Understandable have a Good Day! " | lolcat
+	#exit
+	#else
+	#exit
+	#fi
+	
+
+}
+checkingforwaf
+
 
 function whoisrecords() {
-
+	echo " "
+	echo " "
+	echo " "
 	echo "[+] Gathering WhoIS Records | DNS MX Records |  DNS A Records | DNS TXT Records" | lolcat
 	whois $url >> $url/initial/$url.whois.txt
 	dig $url MX >> $url/initial/$url.DnsMx.txt
@@ -81,7 +175,9 @@ function subdomain () {
 
 #	elif [[ $choice == "A" || $choice == "a" ]]; then
 
-
+	echo " "
+	echo " "
+	echo " "
 
 
 
@@ -133,7 +229,9 @@ echo " "
 
 #edit this part if you want. This filter status 200 only
 function httpxresult() {
-
+	echo " "
+	echo " "
+	echo " "
 	echo "[+] Content Discovery using HTTPX" | lolcat
 	/opt/httpx -list $url/subdomain/$url.subdomain.txt -title -tech-detect -status-code >> $url/subdomain/$url.subdomainchecked.txt
 	cat $url/subdomain/$url.subdomainchecked.txt | grep -e 200 >> $url/subdomain/$url.AliveSubdomain.txt
@@ -155,7 +253,9 @@ echo " "
 
 
 function subtakeover() { 
-
+	echo " "
+	echo " "
+	echo " "
 	echo "[+] Checking for possible Domain Takeover Using Subjack" | lolcat
 	subjack -w $url/subdomain/$url.subdomain.txt -t 100 -timeout 30 -ssl -c /usr/share/subjack/fingerprints.json -v 3 >> $url/subtakeover/$url.subjacktakeover.txt
 	cat $url/subtakeover/$url.subjacktakeover.txt
@@ -182,6 +282,9 @@ echo " "
 
 #AQUATONE
 	function aquatoneresult(){
+	echo " "
+	echo " "
+	echo " "
 	echo "[+] Do You want a Visual Identification using Aquatone { Y | N } ?" | lolcat
 	read aquainput
 	if [[ $aquainput == "Y" || $aquainput == "y" ]]; then
@@ -211,7 +314,10 @@ echo " "
 
 function gauresult(){
 	#.asa .inc .sql .zip .tar .pdf .txt
-	echo "[+] Getting URL's using GAU (.php .asa .inc .sql .zip .tar .pdf .txt Extenstions Only)"
+	echo " "
+	echo " "
+	echo " "
+	echo "[+] Getting URL's using GAU (.php .asa .inc .sql .zip .tar .pdf .txt Extenstions Only)" | lolcat
 	gau --fc 404,302 $url | grep ".php" >> $url/gau/$url.PHP_extentionurl.txt
 	gau --fc 404,302 $url | grep ".asa" >> $url/gau/$url.ASA_extentionurl.txt
 	gau --fc 404,302 $url | grep ".inc" >> $url/gau/$url.INC_extentionurl.txt
@@ -238,6 +344,9 @@ echo " "
 
 
 function breachparsing() {
+	echo " "
+	echo " "
+	echo " "
 
 	echo "[ Do you want to gather breached data? { Y | N }]" | lolcat
 	read breach
@@ -292,6 +401,9 @@ echo " "
 #VULNERABILITY SCANNER FOR WP | JOOMLA | DRUPAL | NUCLEI | CMS | 
 
 function vulnscanner () {
+	echo " "
+	echo " "
+	echo " "
 
 	echo "[+] CHOOSE BETWEEN THE AUTOMATED VULNSCANNERS" | lolcat
 	echo "[+] { W - Wordpress | J - Joomla | D - Drupal | N - NUCLEI | C - CMS (IF YOUR NOT SURE ABOUT THE CMS BEING USED) | X - Cancel}" | lolcat
@@ -370,6 +482,9 @@ echo " "
 
 #FUZZING
 function fuzzresult() {
+	echo " "
+	echo " "
+	echo " "
 
 	echo "WARNING THIS MIGHT TAKE A LOT OF RESOURCERS BOTH PROCESSING POWER AND STORAGE " | lolcat
 	echo "[+] Do you want to perform url fuzzing { Y | N } ? " | lolcat
@@ -393,6 +508,9 @@ echo " "
 
 
 function nmapscan(){
+	echo " "
+	echo " "
+	echo " "
 
 	echo "[+] Would you like to proceed on NMAP Scan? [ Y | N ] " | lolcat
 	echo " "
@@ -411,3 +529,68 @@ function nmapscan(){
 
 }
 nmapscan
+
+
+
+function compile(){
+	echo " "
+	echo " "
+	echo " "
+
+	echo "[+} Do you wanna compile the result [Y]es [N]o" | lolcat
+	read compile
+	if [[ $compile == "Y" || $compile == "y" ]]; then
+
+	echo " "
+	echo " "
+	echo "[---------------------------------------------------------------]"
+	echo "[ +++++++++++++++ COMPILING RESULT PLEASE WAIT ++++++++++++++++ ]" | lolcat
+	echo "[---------------------------------------------------------------]"
+	echo " "
+	echo " "
+	cd $url
+	
+	#echo "Compiling example in progress" 
+	zip -r chickenoodlesout *
+	rm -r breachparsing fuzz gau initial nmapscan subdomain subtakeover vulnscanner aquatone cloudscan
+
+	echo " "
+	echo " "
+	echo "[---------------------------------------------------------------]"
+	echo "[ ++++++++++++++++++++ COMPILE COMPLETE +++++++++++++++++++++++ ]" | lolcat
+	echo "[---------------------------------------------------------------]"
+	echo " "
+	
+	elif [[ $compile == "N" || $compile == "n" ]]; then
+	
+	
+	echo " "
+	echo " "
+	echo "[---------------------------------------------------------]"
+	echo "[ +++++++++++++++ Happy Hacking Friends! ++++++++++++++++ ]" | lolcat
+	echo "[---------------------------------------------------------]"
+	echo " "
+	echo " "
+	#cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat 
+	exit
+
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	
+	else
+	
+	echo " "
+	echo " "
+	echo "[---------------------------------------------------------------]"
+	echo "[ ++++++++++++++++++ WRONG CHOICE BROTHER +++++++++++++++++++++ ]" | lolcat
+	echo "[---------------------------------------------------------------]"
+	echo " "
+	echo " "
+	
+	exit		
+	fi
+	
+}
+compile
