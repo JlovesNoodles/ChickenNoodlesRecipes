@@ -2,7 +2,22 @@
 #! HomeBrewedByChickenN00dles
 
 
-cowsay -f dragon "Welcome to ChickenNoodles Installer" | lolcat -a -d 1
+#cowsay -f dragon "Welcome to ChickenNoodles Installer" | lolcat -a -d 1
+
+echo " "
+echo " "
+echo "[----------------------------------------------------------------------------------]"
+echo "[ ++++++++++ Welcome to ChickenNoodles Installer +++++++++++ ]" | lolcat -a -d 1
+echo "[----------------------------------------------------------------------------------]"
+echo " "
+echo " "
+
+
+
+
+
+
+
 
 echo " "
 echo " "
@@ -64,15 +79,33 @@ unzip nuclei_2.7.3_linux_amd64.zip
 mv nuclei /opt/
 echo "Finished with Nuclei, was installed on /opt/"
 
-cowsay "FINISHED WITH EVERYTHING HAPPY HACKING <3" | lolcat
-cowsay -f stegosaurus "Never forget to update everything after installing for best results!" | lolcat
+cowsay "FINISHED WITH EVERYTHING HAPPY HACKING <3 also Never forget to update everything after installing for best results! " | lolcat
+
+
 
 
 elif [[ $choice == "N" || $choice == "n" ]]; then
-cowsay -f turkey "Why did you even downloaded this bruh?" | lolcat
+
+echo " "
+echo " "
+echo "[---------------------------------------------------------------]"
+echo "[ ++++++++++ Why did you even downloaded this bruh? +++++++++++ ]" | lolcat 
+echo "[---------------------------------------------------------------]"
+echo " "
+echo " "
+
 exit
 
 else
-cowsay -f turtle "Really Bruh?" | lolcat
+
+echo " "
+echo " "
+echo "[-------------------------------------]"
+echo "[ ++++++++++ Really Bruh? +++++++++++ ]" | lolcat 
+echo "[-------------------------------------]"
+echo " "
+echo " "
+
+
 exit
 fi
