@@ -1,3 +1,39 @@
+#!/bin/bash
+# HomeBrewedByChickenN00dles
+
+url=$1
+
+if [ ! -d "$url" ];then
+	mkdir $url
+fi
+
+if [ ! -d "$url/initial" ];then
+	mkdir $url/initial
+fi
+
+if [ ! -d "$url/subdomain" ];then
+	mkdir $url/subdomain
+fi
+
+if [ ! -d "$url/nmapscan" ];then
+	mkdir $url/nmapscan
+fi
+
+if [ ! -d "$url/gau" ];then
+	mkdir $url/gau
+fi
+
+if [ ! -d "$url/fuzz" ];then
+	mkdir $url/fuzz
+fi
+
+if [ ! -d "$url/aquatone" ];then
+	mkdir $url/aquatone
+fi
+
+if [ ! -d "$url/vulnscanner" ];then
+	mkdir $url/vulnscanner
+fi
 
 if [ ! -d "$url/breachparsing" ];then
 	mkdir $url/breachparsing
@@ -26,9 +62,9 @@ function scanningcloud(){
 	echo " "
 	echo " "
 	echo " "
-	echo "[----------------------------------------------------------------------------------------------------------]"
-	echo "[ +++++++++++++++ I assume you already done your recon is the target on cloud? [Y]es [N]o ++++++++++++++++ ]" | lolcat
-	echo "[----------------------------------------------------------------------------------------------------------]"
+	echo "[----------------------------------------------------------------------------------------------------------------------------------]"
+	echo "[ +++++++++++++++ This program will scan for open cloud repositories online would you like to proceed? [Y]es [N]o ++++++++++++++++ ]" | lolcat
+	echo "[----------------------------------------------------------------------------------------------------------------------------------]"
 	echo " "
 	echo " "
 	#cowsay -f flaming-sheep "I assume you already done your recon is the target on cloud? [Y]es [N]o" | lolcat
@@ -529,68 +565,3 @@ function nmapscan(){
 
 }
 nmapscan
-
-
-
-function compile(){
-	echo " "
-	echo " "
-	echo " "
-
-	echo "[+} Do you wanna compile the result [Y]es [N]o" | lolcat
-	read compile
-	if [[ $compile == "Y" || $compile == "y" ]]; then
-
-	echo " "
-	echo " "
-	echo "[---------------------------------------------------------------]"
-	echo "[ +++++++++++++++ COMPILING RESULT PLEASE WAIT ++++++++++++++++ ]" | lolcat
-	echo "[---------------------------------------------------------------]"
-	echo " "
-	echo " "
-	cd $url
-	
-	#echo "Compiling example in progress" 
-	zip -r chickenoodlesout *
-	rm -r breachparsing fuzz gau initial nmapscan subdomain subtakeover vulnscanner aquatone cloudscan
-
-	echo " "
-	echo " "
-	echo "[---------------------------------------------------------------]"
-	echo "[ ++++++++++++++++++++ COMPILE COMPLETE +++++++++++++++++++++++ ]" | lolcat
-	echo "[---------------------------------------------------------------]"
-	echo " "
-	
-	elif [[ $compile == "N" || $compile == "n" ]]; then
-	
-	
-	echo " "
-	echo " "
-	echo "[---------------------------------------------------------]"
-	echo "[ +++++++++++++++ Happy Hacking Friends! ++++++++++++++++ ]" | lolcat
-	echo "[---------------------------------------------------------]"
-	echo " "
-	echo " "
-	#cowsay -f kiss "Ooops nothing to see here continue hacking please!" | lolcat 
-	exit
-
-	echo " "
-	echo " "
-	echo " "
-	echo " "
-	
-	else
-	
-	echo " "
-	echo " "
-	echo "[---------------------------------------------------------------]"
-	echo "[ ++++++++++++++++++ WRONG CHOICE BROTHER +++++++++++++++++++++ ]" | lolcat
-	echo "[---------------------------------------------------------------]"
-	echo " "
-	echo " "
-	
-	exit		
-	fi
-	
-}
-compile
